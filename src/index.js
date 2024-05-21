@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 e.preventDefault()
 const dogPark = document.getElementById("dog-image-container")
 const dogBreeds = document.getElementById("dog-breeds")
-console.log(dogBreeds)
 
 fetch("https://dog.ceo/api/breeds/image/random/4")
   .then(function(response) {
@@ -17,7 +16,7 @@ fetch("https://dog.ceo/api/breeds/image/random/4")
     })
   })
 
-fetch("https://dog.ceo/api/breeds/list/all")
+  fetch("https://dog.ceo/api/breeds/list/all")
   .then(function(response) {
     return response.json()
   })
@@ -26,7 +25,15 @@ fetch("https://dog.ceo/api/breeds/list/all")
     dogBreedArray.forEach(function (breed){ 
       const li = document.createElement('li')
       li.textContent = `${breed}`
-      dogBreeds.appendChild(li)
+      li.style.color = 'black'
+      trackBreeds = dogBreeds.appendChild(li)
+      trackBreeds.addEventListener('click', (e) => {
+        if (li.style.color === 'black') {
+          li.style.color = 'red'
+        } else {
+          li.style.color = 'black'
+        }
+      })
     })
   })
 })
